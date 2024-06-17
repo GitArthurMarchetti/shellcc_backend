@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
-public class CategoriaEntity {
+public class Categoria {
      
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
