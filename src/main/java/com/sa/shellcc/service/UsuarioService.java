@@ -49,10 +49,12 @@ public class UsuarioService {
   
          Usuario usuBD = usuarioRepository.getReferenceById(usuario.getIdUsuario());
         
-       
+       if(usuBD != null){
         usuBD.setEmail(usuario.getEmail());
         usuBD.setSenha(usuario.getSenha());
         usuarioRepository.save(usuBD);
         return true;
         }
+       return false;
+     }
     }
