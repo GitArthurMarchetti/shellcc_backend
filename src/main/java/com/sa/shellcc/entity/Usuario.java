@@ -1,12 +1,15 @@
 
 package com.sa.shellcc.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name="usuarios")
@@ -17,6 +20,13 @@ public class Usuario {
     private Long Id;
     
     @Column(nullable=false)
+    private Boolean isHost;
+   
+    @OneToMany  
+    @JsonManagedReference
+    private Set<Sala> sala;
+    
+    @Column(nullable=false, unique=true)
     private String email;
     
     @Column(nullable=false)
@@ -38,6 +48,23 @@ public class Usuario {
         this.Id = Id;
     }
 
+    public Boolean getIsHost() {
+        return isHost;
+    }
+
+    public void setIsHost(Boolean isHost) {
+        this.isHost = isHost;
+    }
+
+    public Set<Sala> getSala() {
+        return sala;
+    }
+
+    public void setSala(Set<Sala> sala) {
+        this.sala = sala;
+    }    
+    
+    
     public String getEmail() {
         return email;
     }

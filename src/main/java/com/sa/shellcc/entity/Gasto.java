@@ -100,6 +100,16 @@ public class Gasto {
     public void setOpcao(String opcao) {
         this.opcao = opcao;
     }
+
+    public Patrimonio getPatrimonio() {
+        return patrimonio;
+    }
+
+    public void setPatrimonio(Patrimonio patrimonio) {
+        this.patrimonio = patrimonio;
+    }
+    
+    
     
     
 }

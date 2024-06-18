@@ -1,12 +1,16 @@
 
 package com.sa.shellcc.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
@@ -20,9 +24,14 @@ public class Patrimonio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long IdPatrimonio;
     
-    @OneToMany
+    @OneToMany(mappedBy="patrimonios", fetch=FetchType.LAZY,
+            orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Set <Gasto> gasto;
+    private Set<Gasto> gasto;
+    
+    @ManyToOne
+    @JsonBackReference
+    private Categoria categoria;
     
     @Column(nullable=false)
     private String tituloPatrimonio;
@@ -129,6 +138,16 @@ public class Patrimonio {
     public void setLocal(String local) {
         this.local = local;
     }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+    
+    
     
     
 }
