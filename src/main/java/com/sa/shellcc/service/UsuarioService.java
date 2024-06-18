@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.sa.shellcc.service;
 
 import com.sa.shellcc.entity.Usuario;
@@ -9,12 +9,6 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-=======
-
-package com.sa.shellcc.service;
-
-
->>>>>>> 433adc92a2e3db37a5b35e874a9645f510d99754
 public class UsuarioService {
     
     @Autowired
