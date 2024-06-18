@@ -17,7 +17,7 @@ public class Usuario {
        
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long IdUsuario;
     
     @Column(nullable=false)
     private Boolean isHost;
@@ -41,12 +41,12 @@ public class Usuario {
     
     //------------------------------G&S----------------------------------------
 
-    public Long getId() {
-        return Id;
+    public Long getIdUsuario() {
+        return IdUsuario;
     }
 
-    public void setId(Long Id) {
-        this.Id = Id;
+    public void setIdUsuario(Long IdUsuario) {
+        this.IdUsuario = IdUsuario;
     }
 
     public Boolean getIsHost() {
