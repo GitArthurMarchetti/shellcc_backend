@@ -10,5 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SalaRepository extends JpaRepository<Sala,Long>{
-    Sala findByToken(String token);
+    
+    Sala findByNome(String nome);
+    
 }

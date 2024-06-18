@@ -52,7 +52,7 @@ public class Patrimonio {
     private Double valorMaximo;
     
     @Column(nullable=false)
-    private String estado;
+    private Integer estado;
     
     @Column(nullable=false)
     private String local;
@@ -123,11 +123,11 @@ public class Patrimonio {
         this.valorMaximo = valorMaximo;
     }
 
-    public String getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 

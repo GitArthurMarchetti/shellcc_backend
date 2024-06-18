@@ -11,4 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GastoRepository extends JpaRepository<Gasto,Long>{
     
+    Gasto findByNome(String nome);
+    Gasto findByOpcao(String opcao);
+    
 }
