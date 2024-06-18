@@ -32,11 +32,12 @@ public class Usuario {
     @Column(nullable=false)
     private String senha;
      
-    @Column(nullable=false)
+    @Column(nullable=false, unique=true)
     private String tokkenSenha;
      
     @Column(nullable=false)
     private Integer cargo;
+    
     
     //------------------------------G&S----------------------------------------
 
