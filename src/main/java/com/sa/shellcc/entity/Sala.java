@@ -2,8 +2,10 @@
 package com.sa.shellcc.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,16 +23,18 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
     
-    @OneToMany
+    @OneToMany(mappedBy="patrimonios", fetch=FetchType.LAZY,
+            orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Categoria> categoria;
     
     @OneToOne
     private Usuario IdHost;
     
-    @OneToMany
+    @OneToMany(mappedBy="patrimonios", fetch=FetchType.LAZY,
+            orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Patrimonio IdPatrimonio;
+    private Set<Patrimonio> patrimonios;
     
     @Column(nullable=false)
     private String nome;
@@ -76,13 +80,15 @@ public class Sala {
         this.IdHost = IdHost;
     }
 
-    public Patrimonio getIdPatrimonio() {
-        return IdPatrimonio;
+    public Set<Patrimonio> getPatrimonios() {
+        return patrimonios;
     }
 
-    public void setIdPatrimonio(Patrimonio IdPatrimonio) {
-        this.IdPatrimonio = IdPatrimonio;
+    public void setPatrimonios(Set<Patrimonio> patrimonios) {
+        this.patrimonios = patrimonios;
     }
+
+
 
     public String getNome() {
         return nome;
