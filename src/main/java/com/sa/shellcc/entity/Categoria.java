@@ -19,7 +19,7 @@ public class Categoria {
      
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) 
-    private Long Id;
+    private Long IdCategoria;
     
     @ManyToOne
     @JsonBackReference
@@ -41,13 +41,14 @@ public class Categoria {
     
     //--------------------------------S&G--------------------------------------
 
-    public Long getId() {
-        return Id;
+    public Long getIdCategoria() {
+        return IdCategoria;
     }
 
-    public void setId(Long Id) {
-        this.Id = Id;
+    public void setIdCategoria(Long IdCategoria) {
+        this.IdCategoria = IdCategoria;
     }
+
 
     public Sala getSala() {
         return sala;
