@@ -30,7 +30,7 @@ public class Patrimonio {
     @Column(nullable=true)
     private String descricaoPatrimonio;
     
-    @Column(nullable=false)
+    @Column(nullable=false, unique=true)
     private String codigo;
     
     @Column(nullable=false)

@@ -47,7 +47,7 @@ public class Sala {
     @Column(nullable=false)
     private Long maximoTotalMembros;
     
-    @Column(nullable=false)
+    @Column(nullable=false, unique=true)
     private String token;
     
     //-------------------------G&S---------------------------------------------
@@ -131,6 +131,7 @@ public class Sala {
     public void setToken(String token) {
         this.token = token;
     }
+
     
     
     
