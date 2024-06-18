@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.Set;
 
@@ -24,10 +25,11 @@ public class Sala {
     @JsonManagedReference
     private Set<Categoria> categoria;
     
-    @Column(nullable=false)
+    @OneToOne
     private Usuario IdHost;
     
-    @Column(nullable=false)
+    @OneToMany
+    @JsonManagedReference
     private Patrimonio IdPatrimonio;
     
     @Column(nullable=false)
@@ -42,7 +44,7 @@ public class Sala {
     @Column(nullable=false)
     private Long totalMembros;
     
-      @Column(nullable=false)
+    @Column(nullable=false)
     private Long maximoTotalMembros;
     
     @Column(nullable=false)
