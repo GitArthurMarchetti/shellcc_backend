@@ -15,7 +15,6 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
     
     public Long incluirUsuario(Usuario usuario){
-        
           if(usuario.getEmail()== null || usuario.getEmail() == ""){
             return null;
         }
@@ -57,4 +56,7 @@ public class UsuarioService {
         }
        return false;
      }
+     
+     
+     
     }

@@ -21,9 +21,9 @@ public class Sala {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long IdSala;
     
-    @OneToMany(mappedBy="patrimonios", fetch=FetchType.LAZY,
+    @OneToMany(mappedBy="categorias", fetch=FetchType.LAZY,
             orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Categoria> categoria;
@@ -56,14 +56,15 @@ public class Sala {
     
     //-------------------------G&S---------------------------------------------
 
-    public Long getId() {
-        return Id;
+    public Long getIdSala() {
+        return IdSala;
     }
 
-    public void setId(Long Id) {
-        this.Id = Id;
+    public void setIdSala(Long IdSala) {
+        this.IdSala = IdSala;
     }
 
+    
     public Set<Categoria> getCategoria() {
         return categoria;
     }
@@ -87,8 +88,6 @@ public class Sala {
     public void setPatrimonios(Set<Patrimonio> patrimonios) {
         this.patrimonios = patrimonios;
     }
-
-
 
     public String getNome() {
         return nome;
