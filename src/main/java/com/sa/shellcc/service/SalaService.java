@@ -23,7 +23,7 @@ public class SalaService {
     @Autowired
     private SalaRepository salaRepository;
     
-    public Long incluirSala(Sala sala, Usuario IdHost){
+    public Long incluirSala(Sala sala, Usuario IdUsuario){
         
         if(sala.getNome()== null || sala.getNome() == ""){
             return null;
@@ -40,7 +40,7 @@ public class SalaService {
         if(sala.getToken() == null || sala.getToken() == ""){
             return null;
         }
-        sala.setIdHost(IdHost);
+        sala.setIdHost(IdUsuario);
         return salaRepository.save(sala).getIdSala();
     }
     

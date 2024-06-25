@@ -9,6 +9,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -28,8 +29,10 @@ public class Sala {
     @JsonManagedReference
     private Set<Categoria> categoria;
     
-    @OneToOne
-    private Usuario IdHost;
+    @ManyToMany(mappedBy="salas")
+    private Set<Usuario> usuarios;
+    
+    private Long IdHost;
     
     @OneToMany(mappedBy="patrimonios", fetch=FetchType.LAZY,
             orphanRemoval = true, cascade = CascadeType.ALL)

@@ -43,16 +43,13 @@ public class Patrimonio {
     private String codigo;
     
     @Column(nullable=false)
-    private Double valorInicial;
+    private Double valorDaAquisicao;
     
     @Column(nullable=true)
     private Double valorFinal;
     
-    @Column(nullable=true)
-    private Double valorMaximo;
-    
     @Column(nullable=false)
-    private Integer estado;
+    private Integer situacao;
     
     @Column(nullable=false)
     private String local;
