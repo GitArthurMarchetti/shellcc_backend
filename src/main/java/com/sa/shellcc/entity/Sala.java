@@ -67,7 +67,6 @@ public class Sala {
         this.IdSala = IdSala;
     }
 
-    
     public Set<Categoria> getCategoria() {
         return categoria;
     }
@@ -76,11 +75,19 @@ public class Sala {
         this.categoria = categoria;
     }
 
-    public Usuario getIdHost() {
+    public Set<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public Long getIdHost() {
         return IdHost;
     }
 
-    public void setIdHost(Usuario IdHost) {
+    public void setIdHost(Long IdHost) {
         this.IdHost = IdHost;
     }
 
@@ -140,7 +147,6 @@ public class Sala {
         this.token = token;
     }
 
-    
     
     
 }
