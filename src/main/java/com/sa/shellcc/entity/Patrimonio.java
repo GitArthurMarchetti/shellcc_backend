@@ -72,6 +72,14 @@ public class Patrimonio {
         this.gasto = gasto;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     public String getTituloPatrimonio() {
         return tituloPatrimonio;
     }
@@ -96,12 +104,12 @@ public class Patrimonio {
         this.codigo = codigo;
     }
 
-    public Double getValorInicial() {
-        return valorInicial;
+    public Double getValorDaAquisicao() {
+        return valorDaAquisicao;
     }
 
-    public void setValorInicial(Double valorInicial) {
-        this.valorInicial = valorInicial;
+    public void setValorDaAquisicao(Double valorDaAquisicao) {
+        this.valorDaAquisicao = valorDaAquisicao;
     }
 
     public Double getValorFinal() {
@@ -112,20 +120,12 @@ public class Patrimonio {
         this.valorFinal = valorFinal;
     }
 
-    public Double getValorMaximo() {
-        return valorMaximo;
+    public Integer getSituacao() {
+        return situacao;
     }
 
-    public void setValorMaximo(Double valorMaximo) {
-        this.valorMaximo = valorMaximo;
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
+    public void setSituacao(Integer situacao) {
+        this.situacao = situacao;
     }
 
     public String getLocal() {
@@ -136,14 +136,6 @@ public class Patrimonio {
         this.local = local;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-    
     
     
     
