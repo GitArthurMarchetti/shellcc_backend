@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface PatrimonioRepository extends JpaRepository<Patrimonio,Long>{
     
     Patrimonio findByCodigo(String codigo);
-    Patrimonio findByTitulo(String tituloPatrimonio);
-    Patrimonio findByEstado(Integer estado);
+    Patrimonio findByTituloPatrimonio(String tituloPatrimonio);
+    Patrimonio findBySituacao(Integer situacao);
     
 }

@@ -24,7 +24,7 @@ public class Patrimonio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long IdPatrimonio;
     
-    @OneToMany(mappedBy="patrimonios", fetch=FetchType.LAZY,
+    @OneToMany(mappedBy="patrimonio", fetch=FetchType.LAZY,
             orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Gasto> gasto;
@@ -32,6 +32,10 @@ public class Patrimonio {
     @ManyToOne
     @JsonBackReference
     private Categoria categoria;
+    
+    @ManyToOne
+    @JsonBackReference
+    private Sala sala;
     
     @Column(nullable=false)
     private String tituloPatrimonio;
@@ -53,6 +57,8 @@ public class Patrimonio {
     
     @Column(nullable=false)
     private String local;
+    
+    
     
     //------------------------------Get And Setters -----------------------------------
 

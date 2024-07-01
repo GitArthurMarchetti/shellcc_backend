@@ -24,17 +24,18 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long IdSala;
     
-    @OneToMany(mappedBy="categorias", fetch=FetchType.LAZY,
+    @OneToMany(mappedBy="sala", fetch=FetchType.LAZY,
             orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Categoria> categoria;
     
-    @ManyToMany(mappedBy="salas")
+    @ManyToMany(mappedBy="sala")
     private Set<Usuario> usuarios;
-    
+   
+    @Column(nullable=false)
     private Long IdHost;
     
-    @OneToMany(mappedBy="patrimonios", fetch=FetchType.LAZY,
+    @OneToMany(mappedBy="sala", fetch=FetchType.LAZY,
             orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Patrimonio> patrimonios;

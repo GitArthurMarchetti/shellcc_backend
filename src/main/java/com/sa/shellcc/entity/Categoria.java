@@ -11,10 +11,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.Set;
 
 
 @Entity
+@Table(name="categorias")
 public class Categoria {
      
     @Id
@@ -25,8 +27,7 @@ public class Categoria {
     @JsonBackReference
     private Sala sala;
     
-    @OneToMany(mappedBy="salas", fetch=FetchType.LAZY,
-            orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany
     @JsonManagedReference
     private Set<Patrimonio> patrimonio;
     
