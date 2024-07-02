@@ -16,38 +16,38 @@ import java.util.Set;
 @Table(name="usuarios")
 public class Usuario {
        
-    @Id
+   @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long IdUsuario;
-    
-    @Column(nullable=false)
+    private Long idUsuario;
+
+    @Column(nullable = false)
     private Boolean isHost;
-   
-    @ManyToMany  
+
+    @ManyToMany
     @JsonManagedReference
     private Set<Sala> sala;
-    
-    @Column(nullable=false, unique=true)
+
+    @Column(nullable = false, unique = true)
     private String email;
-    
-    @Column(nullable=false)
+
+    @Column(nullable = false)
     private String senha;
-     
-    @Column(nullable=false, unique=true)
+
+    @Column(nullable = true, unique = true)
     private String tokkenSenha;
-     
-    @Column(nullable=false)
+
+    @Column(nullable = true)
     private Integer cargo;
-    
+
     
     //------------------------------G&S----------------------------------------
 
     public Long getIdUsuario() {
-        return IdUsuario;
+        return idUsuario;
     }
 
-    public void setIdUsuario(Long IdUsuario) {
-        this.IdUsuario = IdUsuario;
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public Boolean getIsHost() {

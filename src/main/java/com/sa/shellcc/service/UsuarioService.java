@@ -14,15 +14,15 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
     
-    public Long incluirUsuario(Usuario usuario){
-          if(usuario.getEmail()== null || usuario.getEmail() == ""){
+    public Long incluirUsuario(Usuario usuario) {
+        if (usuario.getEmail() == null || usuario.getEmail().isEmpty()) {
             return null;
         }
-          if(usuario.getSenha()== null || usuario.getSenha() == ""){
+        if (usuario.getSenha() == null || usuario.getSenha().isEmpty()) {
             return null;
         }
-          return usuarioRepository.save(usuario).getIdUsuario();
-         }
+        return usuarioRepository.save(usuario).getIdUsuario();
+    }
     
     public boolean excluirUsuario(Long IdUsuario){
         if(usuarioRepository.findById(IdUsuario).isPresent()){
