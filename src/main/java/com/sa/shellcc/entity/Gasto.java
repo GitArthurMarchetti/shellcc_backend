@@ -19,7 +19,7 @@ public class Gasto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long IdGasto;
-    
+
     @ManyToOne
     @JsonBackReference
     private Patrimonio patrimonio;

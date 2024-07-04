@@ -1,31 +1,32 @@
 
-package com.sa.shellcc.entity;
+    package com.sa.shellcc.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import java.util.Set;
+    import com.fasterxml.jackson.annotation.JsonManagedReference;
+    import jakarta.persistence.Column;
+    import jakarta.persistence.Entity;
+    import jakarta.persistence.GeneratedValue;
+    import jakarta.persistence.GenerationType;
+    import jakarta.persistence.Id;
+    import jakarta.persistence.ManyToMany;
+    import jakarta.persistence.OneToMany;
+    import jakarta.persistence.Table;
+    import java.util.Set;
 
-@Entity
-@Table(name="usuarios")
-public class Usuario {
-       
-   @Id
+    @Entity
+    @Table(name="usuarios")
+    public class Usuario {
+
+     
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUsuario;
 
     @Column(nullable = false)
     private Boolean isHost;
 
-    @ManyToMany
-    @JsonManagedReference
-    private Set<Sala> sala;
+    //@ManyToMany
+   // @JsonManagedReference
+   // private Set<Sala> sala;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -39,66 +40,65 @@ public class Usuario {
     @Column(nullable = true)
     private Integer cargo;
 
-    
-    //------------------------------G&S----------------------------------------
+        //------------------------------G&S----------------------------------------
 
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
+        public Long getIdUsuario() {
+            return idUsuario;
+        }
 
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+        public void setIdUsuario(Long idUsuario) {
+            this.idUsuario = idUsuario;
+        }
 
-    public Boolean getIsHost() {
-        return isHost;
-    }
+        public Boolean getIsHost() {
+            return isHost;
+        }
 
-    public void setIsHost(Boolean isHost) {
-        this.isHost = isHost;
-    }
+        public void setIsHost(Boolean isHost) {
+            this.isHost = isHost;
+        }
 
-    public Set<Sala> getSala() {
-        return sala;
-    }
+        // public Set<Sala> getSala() {
+        //     return sala;
+        // }
 
-    public void setSala(Set<Sala> sala) {
-        this.sala = sala;
-    }    
-    
-    
-    public String getEmail() {
-        return email;
-    }
+        // public void setSala(Set<Sala> sala) {
+        //     this.sala = sala;
+        // }    
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
-    public String getSenha() {
-        return senha;
-    }
+        public String getEmail() {
+            return email;
+        }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+        public void setEmail(String email) {
+            this.email = email;
+        }
 
-    public String getTokkenSenha() {
-        return tokkenSenha;
-    }
+        public String getSenha() {
+            return senha;
+        }
 
-    public void setTokkenSenha(String tokkenSenha) {
-        this.tokkenSenha = tokkenSenha;
-    }
+        public void setSenha(String senha) {
+            this.senha = senha;
+        }
 
-    public Integer getCargo() {
-        return cargo;
-    }
+        public String getTokkenSenha() {
+            return tokkenSenha;
+        }
 
-    public void setCargo(Integer cargo) {
-        this.cargo = cargo;
+        public void setTokkenSenha(String tokkenSenha) {
+            this.tokkenSenha = tokkenSenha;
+        }
+
+        public Integer getCargo() {
+            return cargo;
+        }
+
+        public void setCargo(Integer cargo) {
+            this.cargo = cargo;
+        }
+
+
+
     }
-    
-    
-    
-}

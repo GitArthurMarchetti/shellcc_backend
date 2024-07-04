@@ -19,17 +19,19 @@ import java.util.Set;
 @Table(name="categorias")
 public class Categoria {
      
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+   @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long IdCategoria;
-    
+
     @ManyToOne
     @JsonBackReference
     private Sala sala;
-    
-    @OneToMany
+
+    @OneToMany(mappedBy = "categoria",
+    fetch = FetchType.LAZY,
+    orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Set<Patrimonio> patrimonio;
+    private Set<Patrimonio> patrimonios;
     
     @Column(nullable=false)
     private String nome;
@@ -60,11 +62,11 @@ public class Categoria {
     }
 
     public Set<Patrimonio> getPatrimonio() {
-        return patrimonio;
+        return patrimonios;
     }
 
     public void setPatrimonio(Set<Patrimonio> patrimonio) {
-        this.patrimonio = patrimonio;
+        this.patrimonios = patrimonio;
     }
 
     public String getNome() {

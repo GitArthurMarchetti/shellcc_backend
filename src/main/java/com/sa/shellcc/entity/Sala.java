@@ -1,6 +1,7 @@
 
 package com.sa.shellcc.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -20,25 +21,24 @@ import java.util.Set;
 @Table(name="salas")
 public class Sala {
     
-    @Id
+   @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long IdSala;
-    
-    @OneToMany(mappedBy="sala", fetch=FetchType.LAZY,
-            orphanRemoval = true, cascade = CascadeType.ALL)
+
+     //@ManyToMany(mappedBy = "sala")
+     //@JsonBackReference
+     //private Set<Usuario> usuarios;
+
+    @OneToMany(mappedBy = "sala", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Set<Categoria> categoria;
-    
-    @ManyToMany(mappedBy="sala")
-    private Set<Usuario> usuarios;
-   
-    @Column(nullable=false)
-    private Long IdHost;
-    
-    @OneToMany(mappedBy="sala", fetch=FetchType.LAZY,
-            orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<Categoria> categorias;
+
+    @OneToMany(mappedBy = "sala", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Patrimonio> patrimonios;
+    
+    @Column(nullable = false)
+    private Long IdHost;
     
     @Column(nullable=false)
     private String nome;
@@ -69,20 +69,20 @@ public class Sala {
     }
 
     public Set<Categoria> getCategoria() {
-        return categoria;
+        return categorias;
     }
 
     public void setCategoria(Set<Categoria> categoria) {
-        this.categoria = categoria;
+        this.categorias = categoria;
     }
 
-    public Set<Usuario> getUsuarios() {
-        return usuarios;
-    }
+     //public Set<Usuario> getUsuarios() {
+     //    return usuarios;
+    // }
 
-    public void setUsuarios(Set<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
+    // public void setUsuarios(Set<Usuario> usuarios) {
+     //    this.usuarios = usuarios;
+     //}
 
     public Long getIdHost() {
         return IdHost;
