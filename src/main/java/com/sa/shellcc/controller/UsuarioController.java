@@ -31,7 +31,7 @@ public class UsuarioController {
     }// http://localhost:8010/shellcc/user
     
     @DeleteMapping("/user/{IdUsuario}")
-    public ResponseEntity<Long> exluirUsuario(@PathVariable ("IdClient")Long IdUsuario){
+    public ResponseEntity<Long> exluirUsuario(@PathVariable ("IdUsuario")Long IdUsuario){
         if(usuarioService.excluirUsuario(IdUsuario)){
             return new ResponseEntity<>(HttpStatus.OK);
         }       
