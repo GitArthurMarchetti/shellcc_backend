@@ -31,11 +31,7 @@ public class Sala {
 
     @OneToMany(mappedBy = "sala", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
-
     private Set<Categoria> categorias;
-
-    @OneToMany(mappedBy = "sala", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
-    private Set<Categoria> categoria;
     
     //@ManyToMany(mappedBy="sala")
    // private Set<Usuario> usuarios;
@@ -85,8 +81,13 @@ public class Sala {
         this.categorias = categoria;
     }
 
-    
+    //public Set<Usuario> getUsuarios() {
+    //    return usuarios;
+    //}
 
+    //public void setUsuarios(Set<Usuario> usuarios) {
+     //   this.usuarios = usuarios;
+   // }
 
     public Long getIdHost() {
         return IdHost;

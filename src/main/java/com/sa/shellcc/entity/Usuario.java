@@ -24,7 +24,7 @@
     @Column(nullable = false)
     private Boolean isHost;
 
-  
+
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -55,14 +55,21 @@
         public void setIsHost(Boolean isHost) {
             this.isHost = isHost;
         }
- 
-    
-    
-    public String getEmail() {
-        return email;
-    }
 
 
+   // public Set<Sala> getSala() {
+    //    return sala;
+   // }
+
+   // public void setSala(Set<Sala> sala) {
+   //     this.sala = sala;
+   // }    
+
+
+
+        public String getEmail() {
+            return email;
+        }
 
         public void setEmail(String email) {
             this.email = email;
