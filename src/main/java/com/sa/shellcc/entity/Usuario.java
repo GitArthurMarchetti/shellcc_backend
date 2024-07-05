@@ -25,7 +25,11 @@
     private Boolean isHost;
 
     //@ManyToMany
+<<<<<<< HEAD
    // @JsonManagedReference
+=======
+    //@JsonManagedReference
+>>>>>>> 041f918 (controller funcionando)
    // private Set<Sala> sala;
 
     @Column(nullable = false, unique = true)
@@ -58,6 +62,7 @@
             this.isHost = isHost;
         }
 
+<<<<<<< HEAD
         // public Set<Sala> getSala() {
         //     return sala;
         // }
@@ -65,6 +70,20 @@
         // public void setSala(Set<Sala> sala) {
         //     this.sala = sala;
         // }    
+=======
+   // public Set<Sala> getSala() {
+    //    return sala;
+   // }
+
+   // public void setSala(Set<Sala> sala) {
+   //     this.sala = sala;
+   // }    
+    
+    
+    public String getEmail() {
+        return email;
+    }
+>>>>>>> 041f918 (controller funcionando)
 
 
         public String getEmail() {

@@ -31,9 +31,22 @@ public class Sala {
 
     @OneToMany(mappedBy = "sala", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonManagedReference
+<<<<<<< HEAD
     private Set<Categoria> categorias;
 
     @OneToMany(mappedBy = "sala", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+=======
+    private Set<Categoria> categoria;
+    
+    //@ManyToMany(mappedBy="sala")
+   // private Set<Usuario> usuarios;
+   
+    @Column(nullable=false)
+    private Long IdHost;
+    
+    @OneToMany(mappedBy="sala", fetch=FetchType.LAZY,
+            orphanRemoval = true, cascade = CascadeType.ALL)
+>>>>>>> 041f918 (controller funcionando)
     @JsonManagedReference
     private Set<Patrimonio> patrimonios;
     
@@ -76,6 +89,7 @@ public class Sala {
         this.categorias = categoria;
     }
 
+<<<<<<< HEAD
      //public Set<Usuario> getUsuarios() {
      //    return usuarios;
     // }
@@ -83,6 +97,15 @@ public class Sala {
     // public void setUsuarios(Set<Usuario> usuarios) {
      //    this.usuarios = usuarios;
      //}
+=======
+    //public Set<Usuario> getUsuarios() {
+    //    return usuarios;
+    //}
+
+    //public void setUsuarios(Set<Usuario> usuarios) {
+     //   this.usuarios = usuarios;
+   // }
+>>>>>>> 041f918 (controller funcionando)
 
     public Long getIdHost() {
         return IdHost;
