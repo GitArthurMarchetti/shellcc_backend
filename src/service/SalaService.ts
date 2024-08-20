@@ -1,5 +1,3 @@
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
 import prismaClient from '../prisma';
 import { FastifyReply, FastifyRequest } from 'fastify';
 
@@ -17,50 +15,50 @@ interface SalaProps {
 class SalaService {
 
     async createSala({ tituloSala, descricaoSala, cor, totalMembros, maximoDeMembros, tokkenAcesso, resetPasswordToken }) {
-        let patrimonio;
+        let sala;
 
-        if (!tituloPatrimonio || !descricaoPatrimonio || !codigo || !valorDaAquisicao || !valorFinal || !situacao || !localizacao) {
+        if (!tituloSala || !descricaoSala || !cor || !totalMembros || !maximoDeMembros || !tokkenAcesso || !resetPasswordToken) {
             throw new Error("Preencha todos os campos")
         } else {
             try {
-                patrimonio = await prismaClient.patrimonio.create({
+                sala = await prismaClient.sala.create({
                     data: {
-                        tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao
+                        tituloSala, descricaoSala, cor, totalMembros, maximoDeMembros, tokkenAcesso, resetPasswordToken
                     }
                 })
             } catch (error) {
 
-                throw new Error("Erro ao criar patrimônio")
+                throw new Error("Erro ao criar sala")
             }
         }
-        return { patrimonio };
+        return { sala };
     }
 
 
-    async getPatrimonio() {
-        const patrimonios = await prismaClient.patrimonio.findMany()
+    async getSala() {
+        const salas = await prismaClient.sala.findMany()
 
-        return patrimonios
+        return salas
     }
 
-    async deletarPatrimonio(id: string) {
+    async deletarSala(id: string) {
         if (!id) {
             throw new Error("Solicitação invalida!")
         }
 
-        const findPatrimonioById = await prismaClient.patrimonio.findFirst({
+        const findSalaById = await prismaClient.sala.findFirst({
             where: {
                 id
             }
         })
 
-        if (!findPatrimonioById) {
-            throw new Error("Nenhum patrimônio com esse ID!")
+        if (!findSalaById) {
+            throw new Error("Nenhuma sala com esse ID!")
         }
 
-        await prismaClient.patrimonio.delete({
+        await prismaClient.sala.delete({
             where: {
-                id: findPatrimonioById.id
+                id: findSalaById.id
             }
         })
 
@@ -68,28 +66,28 @@ class SalaService {
 
     }
 
-    async updatePatrimonio({ id, tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao }: PatrimoniosProps) {
+    async updateSala({ id, tituloSala, descricaoSala, cor, totalMembros, maximoDeMembros, tokkenAcesso, resetPasswordToken }: SalaProps) {
         if (!id) {
             throw new Error("Solicitação invalida!")
         }
 
-        const findPatrimonioById = await prismaClient.patrimonio.findFirst({
+        const findSalaById = await prismaClient.sala.findFirst({
             where: {
                 id
             }
         })
-        const patrimonio = await prismaClient.patrimonio.update({
+        const sala = await prismaClient.sala.update({
             where: {
-                id: findPatrimonioById?.id
+                id: findSalaById?.id
             },
             data: {
-                id, tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao
+                id, tituloSala, descricaoSala, cor, totalMembros, maximoDeMembros, tokkenAcesso, resetPasswordToken
             }
         })
-        return patrimonio
+        return sala
     }
 
 
 }
 
-export default PatrimonioService
+export default SalaService

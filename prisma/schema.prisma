@@ -22,6 +22,7 @@ model UserSala {
   id     String @id @default(uuid())
   userId String
   salaId String
+  role   String // Campo adicional para armazenar o papel do usuário na sala
   user   User   @relation("UserSalas", fields: [userId], references: [id])
   sala   Sala   @relation("UserSalas", fields: [salaId], references: [id])
 
@@ -47,7 +48,7 @@ model Categoria {
   id                 String  @id @default(uuid())
   tituloCategoria    String  @unique
   descricaoCategoria String?
-  desvalorizacao     Float
+  TipoCategoria     String
 
   @@map("categoria")
 }
@@ -62,6 +63,7 @@ model Patrimonio {
   valorAtual          Int
   situacao            Int
   localizacao         String
+  porcentagemDesvalorizacao Int
 
   @@map("patrimonios")
 }

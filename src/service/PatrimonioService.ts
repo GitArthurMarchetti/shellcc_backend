@@ -13,20 +13,21 @@ interface PatrimoniosProps {
     valorAtual?: number
     situacao?: number
     localizacao?: string
+    porcentagemDesvalorizacao?: number
 }
 
 class PatrimonioService {
 
-    async createPatrimonio({ tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao }) {
+    async createPatrimonio({ tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao, porcentagemDesvalorizacao }) {
         let patrimonio;
 
-        if (!tituloPatrimonio || !descricaoPatrimonio || !codigo || !valorDaAquisicao || !valorFinal || !situacao || !localizacao) {
+        if (!tituloPatrimonio || !descricaoPatrimonio || !codigo || !valorDaAquisicao || !valorFinal || !situacao || !localizacao || !porcentagemDesvalorizacao) {
             throw new Error("Preencha todos os campos")
         } else {
             try {
                 patrimonio = await prismaClient.patrimonio.create({
                     data: {
-                        tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao
+                        tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao, porcentagemDesvalorizacao
                     }
                 })
             } catch (error) {
@@ -69,7 +70,7 @@ class PatrimonioService {
 
     }
 
-    async updatePatrimonio({ id, tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao }: PatrimoniosProps) {
+    async updatePatrimonio({ id, tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao, porcentagemDesvalorizacao}: PatrimoniosProps) {
         if (!id) {
             throw new Error("Solicitação invalida!")
         }
@@ -84,7 +85,7 @@ class PatrimonioService {
                 id: findPatrimonioById?.id
             },
             data: {
-                id, tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao
+                id, tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao, porcentagemDesvalorizacao
             }
         })
         return patrimonio

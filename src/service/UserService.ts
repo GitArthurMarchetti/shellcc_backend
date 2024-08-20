@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import prismaClient from '../prisma';
-import { FastifyReply, FastifyRequest } from 'fastify';
 
 interface UserProps {
     id?: string,
@@ -31,7 +30,7 @@ class UserService {
             }
         }
         return { user, token };
-    }
+    }   
     async getUser() {
         const users = await prismaClient.user.findMany()
 
