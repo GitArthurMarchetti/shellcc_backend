@@ -77,10 +77,10 @@ class GastoService {
         })
         const gasto = await prismaClient.gasto.update({
             where: {
-                id: findGastoById.id
+                id: findGastoById?.id
             },
             data: {
-                titulo, descricao, preco, dataGasto, repeticao
+                id, titulo, descricao, preco, dataGasto, repeticao
             }
         })
         return gasto

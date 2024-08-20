@@ -28,10 +28,10 @@ class UserController {
 
     async updateUser(request: FastifyRequest, reply: FastifyReply) {
         const userService = new UserService()
-        const { nome, email, senha } = request.body as ({ nome: string, senha: string, email: string })
+        const { nome, email, senha, id } = request.body as ({ id: string, nome: string, senha: string, email: string })
 
         try {
-            const user = await userService.updateUser({ nome, email, senha });
+            const user = await userService.updateUser({ id, nome, email, senha });
 
             reply.send({ user });
         } catch (error) {
@@ -41,16 +41,14 @@ class UserController {
 
     async deleteUser(request: FastifyRequest, reply: FastifyReply) {
         const userService = new UserService()
-
-        const { id } = request.query as { id: string }
-
+        const { id } = request.body as { id: string }
         const user = await userService.deletarUsuario(id)
 
         reply.send(user)
     }
 
     async login(request: FastifyRequest, reply: FastifyReply) {
-        const { email, password } = request.body as { email: string, password: string }
+        const { email, senha } = request.body as { email: string, senha: string }
 
         const user = await prismaClient.user.findUnique({
             where: { email }
@@ -61,11 +59,11 @@ class UserController {
             return;
         }
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        const isPasswordValid = await bcrypt.compare(senha, user.senha);
 
         if (!isPasswordValid)
             reply.status(400).send({ success: false, message: 'Email ou senha incorretos' });
-        return;
+        return (true);
     }
 }
 export default UserController

@@ -1,9 +1,11 @@
 import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify"
 import UserController from "./controller/UserController";
+import GastoController from "./controller/CategoriaController";
 
 export async function routes(fastify: FastifyInstance, options: FastifyPluginOptions) {
 
     const userController = new UserController();
+    const GastoController = new GastoController();
 
 
     fastify.get("/teste", async (request: FastifyRequest, reply: FastifyReply) => {
@@ -15,7 +17,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
     fastify.get('/user', async (request: FastifyRequest, reply: FastifyReply) => {
         return userController.getUser(request, reply)
     })
-    fastify.put('/user/:userId', async (request: FastifyRequest, reply: FastifyReply) => {
+    fastify.put('/user/update', async (request: FastifyRequest, reply: FastifyReply) => {
         return userController.updateUser(request, reply)
     })
     fastify.delete('/user/delete', async (request: FastifyRequest, reply: FastifyReply) => {

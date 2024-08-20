@@ -39,8 +39,9 @@ class UserService {
     }
 
     async deletarUsuario(id: string) {
+
         if (!id) {
-            throw new Error("Solicitação invalida!")
+            throw new Error("Nenhum ID alocado")
         }
 
         const findUserById = await prismaClient.user.findFirst({
@@ -64,6 +65,7 @@ class UserService {
     }
 
     async updateUser({ nome, email, senha, id }: UserProps) {
+
         if (!id) {
             throw new Error("Solicitação invalida!")
         }
@@ -75,10 +77,10 @@ class UserService {
         })
         const user = await prismaClient.user.update({
             where: {
-                id: findUserById.id
+                id: findUserById?.id
             },
             data: {
-                nome, email, senha
+                id, nome, email, senha
             }
         })
         return user

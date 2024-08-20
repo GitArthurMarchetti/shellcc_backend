@@ -3,21 +3,20 @@ import bcrypt from 'bcrypt';
 import prismaClient from '../prisma';
 import { FastifyReply, FastifyRequest } from 'fastify';
 
-interface PatrimoniosProps {
-    id?: string
-    tituloPatrimonio?: string
-    descricaoPatrimonio?: string
-    codigo?: number
-    valorDaAquisicao?: number
-    valorFinal?: number
-    valorAtual?: number
-    situacao?: number
-    localizacao?: string
+interface SalaProps {
+    id: string,
+    tituloSala: string,
+    descricaoSala: string,
+    cor: string,
+    totalMembros: number,
+    maximoDeMembros: number,
+    tokkenAcesso: string,
+    resetPasswordToken: string
 }
 
-class PatrimonioService {
+class SalaService {
 
-    async createPatrimonio({ tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao }) {
+    async createSala({ tituloSala, descricaoSala, cor, totalMembros, maximoDeMembros, tokkenAcesso, resetPasswordToken }) {
         let patrimonio;
 
         if (!tituloPatrimonio || !descricaoPatrimonio || !codigo || !valorDaAquisicao || !valorFinal || !situacao || !localizacao) {
