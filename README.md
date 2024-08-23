@@ -15,3 +15,5 @@ Declara para o Jest, onde começa o bloco de testes. Reune um conjunto de testes
 Declara um caso ÚNICO de teste unitário. - *tests cases*
 
 **- EXPECT:**
+
+Asserções do resultado - Validar resultados
