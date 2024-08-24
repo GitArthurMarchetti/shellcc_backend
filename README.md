@@ -2,9 +2,9 @@
 
 <!-- TESTE UNITÁRIO -->
 
-## Entenda os testes!
+## Entenda os testes com *JEST*!
 
-Três funções que sempre utilizará:
+### Principais funções: 
 
 **- DESCRIBE:**
 
@@ -16,4 +16,18 @@ Declara um caso ÚNICO de teste unitário. - *tests cases*
 
 **- EXPECT:**
 
-Asserções do resultado - Validar resultados
+Asserções do resultado - Valida os resultados
+
+
+### O que é Mock?
+
+**- Mock:**
+
+'um mock é um objeto simulado que imita o comportamento de objetos reais de forma controlada.', ou seja, Mock é a simulação de uma entrada.
+
+Exemplo da simulação a resposta do método getUser do UserService:
+
+ mockGetUser.mockResolvedValue([
+            { nome: "Arthur", email: "arthur505@gmail.com" },
+            { nome: "Sarah", email: "sarah505@gmail.com" }
+        ]);

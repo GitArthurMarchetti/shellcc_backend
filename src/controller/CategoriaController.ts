@@ -7,10 +7,27 @@ class GastoController {
 
     async createGasto(request: FastifyRequest, reply: FastifyReply) {
         const gastoService = new GastoService()
-        const { titulo, descricao, preco, dataGasto, repeticao } = request.body as ({ titulo: string, descricao: string, preco: number, dataGasto: Date, repeticao: boolean })
+        const {
+            titulo,
+            descricao,
+            preco,
+            dataGasto,
+            repeticao } = request.body as ({
+                titulo: string,
+                descricao: string,
+                preco: number,
+                dataGasto: Date,
+                repeticao: boolean
+            })
 
         try {
-            const { gasto } = await gastoService.createGasto({ titulo, descricao, preco, dataGasto, repeticao })
+            const { gasto } = await gastoService.createGasto({
+                titulo,
+                descricao,
+                preco,
+                dataGasto,
+                repeticao
+            })
             reply.send({ gasto })
         } catch {
             reply.send({ error: "Ocorreu um erro ao criar o gasto" });

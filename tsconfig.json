@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",                         // Define a versão do ECMAScript para ES2020
+      "module": "commonjs",                       // Usa o sistema de módulos CommonJS
+      "moduleResolution": "node",                 // Resolve módulos no estilo Node.js
+      "outDir": "./dist",                         // Diretório de saída para arquivos compilados
+      "rootDir": "./src",                         // Diretório raiz dos arquivos de código fonte
+      "strict": true,                            // Ativa verificações rigorosas
+      "esModuleInterop": true,                   // Permite importações usando sintaxe padrão
+      "skipLibCheck": true,                      // Ignora verificação de tipo para arquivos de declaração
+      "forceConsistentCasingInFileNames": true,  // Garante consistência na diferenciação de maiúsculas/minúsculas
+      "baseUrl": ".",                            // Base URL para resolução de módulos
+      "paths": {
+        "*": ["node_modules/*"]                 // Resolve módulos no diretório node_modules
+      }
+    },
+    "include": ["src"],                          // Inclui arquivos na pasta 'src'
+    "exclude": ["node_modules", "**/*.test.ts"]  // Exclui a pasta 'node_modules' e arquivos de teste
+  }
+  

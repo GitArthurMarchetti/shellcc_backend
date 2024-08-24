@@ -1,19 +1,28 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import UserService from "../service/UserService";
-import bcrypt from 'bcrypt';
+import * as jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt';
 import prismaClient from "../prisma";
 
 class UserController {
 
     async createUser(request: FastifyRequest, reply: FastifyReply) {
         const userService = new UserService()
-        const { nome, email, senha } = request.body as ({ nome: string, senha: string, email: string })
+        const {
+            nome,
+            email,
+            senha
+        } = request.body as ({
+            nome: string,
+            email: string,
+           senha: string
+        })
 
         try {
             const { user, token } = await userService.createUser({ nome, email, senha })
-            reply.send({ user, token })
+            reply.code(200).send({ user, token });
         } catch {
-            reply.send({ error: "Ocorreu um erro ao criar o usuário" });
+            reply.code(500).send({ error: "Ocorreu um erro ao criar o usuário" });
         }
     }
 
@@ -28,7 +37,12 @@ class UserController {
 
     async updateUser(request: FastifyRequest, reply: FastifyReply) {
         const userService = new UserService()
-        const { nome, email, senha, id } = request.body as ({ id: string, nome: string, senha: string, email: string })
+        const { nome, email, senha, id } = request.body as ({
+            id: string,
+            nome: string,
+            senha: string,
+            email: string
+        })
 
         try {
             const user = await userService.updateUser({ id, nome, email, senha });

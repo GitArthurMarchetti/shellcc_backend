@@ -10,7 +10,7 @@ interface UserProps {
 }
 
 class UserService {
-    async createUser({ nome, email, senha, }) {
+    async createUser({ nome, email, senha, }: UserProps) {
         let user
         let token: string
 

@@ -7,10 +7,40 @@ class PatrimonioController {
 
     async createPatrimonio(request: FastifyRequest, reply: FastifyReply) {
         const patrimonioService = new PatrimonioService()
-        const { tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao } = request.body as ({ tituloPatrimonio: string, descricaoPatrimonio: string, codigo: number, valorDaAquisicao: number, valorFinal: number, valorAtual: number, situacao: number, localizacao: string })
+        const {
+            tituloPatrimonio,
+            descricaoPatrimonio,
+            codigo,
+            valorDaAquisicao,
+            valorFinal,
+            valorAtual,
+            situacao,
+            localizacao,
+            porcentagemDesvalorizacao } = request.body as
+            ({
+                tituloPatrimonio: string,
+                descricaoPatrimonio: string,
+                codigo: number,
+                valorDaAquisicao: number,
+                valorFinal: number,
+                valorAtual: number,
+                situacao: number,
+                localizacao: string,
+                porcentagemDesvalorizacao: number
+            })
 
         try {
-            const { patrimonio } = await patrimonioService.createPatrimonio({ tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao })
+            const { patrimonio } = await patrimonioService.createPatrimonio({
+                tituloPatrimonio,
+                descricaoPatrimonio,
+                codigo,
+                valorDaAquisicao,
+                valorFinal,
+                valorAtual,
+                situacao,
+                localizacao,
+                porcentagemDesvalorizacao,
+            })
             reply.send({ patrimonio })
         } catch {
             reply.send({ error: "Ocorreu um erro ao criar o patrimônio" });
@@ -28,10 +58,36 @@ class PatrimonioController {
 
     async updatePatrimonio(request: FastifyRequest, reply: FastifyReply) {
         const patrimonioService = new PatrimonioService()
-        const { tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao } = request.body as ({ tituloPatrimonio: string, descricaoPatrimonio: string, codigo: number, valorDaAquisicao: number, valorFinal: number, valorAtual: number, situacao: number, localizacao: string })
+        const { tituloPatrimonio,
+            descricaoPatrimonio,
+            codigo,
+            valorDaAquisicao,
+            valorFinal,
+            valorAtual,
+            situacao,
+            localizacao
+        } = request.body as ({
+            tituloPatrimonio: string,
+            descricaoPatrimonio: string,
+            codigo: number,
+            valorDaAquisicao: number,
+            valorFinal: number,
+            valorAtual: number,
+            situacao: number,
+            localizacao: string
+        })
 
         try {
-            const patrimonio = await patrimonioService.updatePatrimonio({ tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao });
+            const patrimonio = await patrimonioService.updatePatrimonio({
+                tituloPatrimonio,
+                descricaoPatrimonio,
+                codigo,
+                valorDaAquisicao,
+                valorFinal,
+                valorAtual,
+                situacao,
+                localizacao
+            });
 
             reply.send({ patrimonio });
         } catch (error) {

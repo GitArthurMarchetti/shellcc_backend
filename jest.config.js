@@ -1,10 +1,9 @@
 module.exports = {
-   testEnviroment: 'node',
-   testMatch: [
-    '**/__tests__/**/*.test.js', 
-    '**/?(*.)+(spec|test).[jt]s?(x)'
-  ],
-  testEnvironment: 'node', // ou 'jsdom' dependendo do ambiente
-  setupFilesAfterEnv: ['./jest.setup.js'], // se precisar de configurações adicionais
-  };
-  
+  preset: 'ts-jest', // Usa ts-jest para transformar arquivos TypeScript
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest', // Transforma arquivos .ts e .tsx usando ts-jest
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js'], // Extensões de arquivos que o Jest deve considerar
+  transformIgnorePatterns: ['<rootDir>/node_modules/'], // Ignora arquivos em node_modules
+};
