@@ -46,10 +46,9 @@ class UserController {
 
         try {
             const user = await userService.updateUser({ id, nome, email, senha });
-
-            reply.send({ user });
+            reply.send(user);
         } catch (error) {
-            reply.send({ error: "Ocorreu um erro ao atualizar os detalhes do usuário" });
+            reply.code(500).send({ error: "Ocorreu um erro ao atualizar os detalhes do usuário" });
         }
     }
 
