@@ -2,19 +2,19 @@ import prismaClient from '../prisma';
 import { FastifyReply, FastifyRequest } from 'fastify';
 
 interface SalaProps {
-    id: string,
-    tituloSala: string,
-    descricaoSala: string,
-    cor: string,
-    totalMembros: number,
-    maximoDeMembros: number,
-    tokkenAcesso: string,
-    resetPasswordToken: string
+    id?: string;
+    tituloSala: string;
+    descricaoSala: string;
+    cor: string;
+    totalMembros: number;
+    maximoDeMembros: number;
+    tokkenAcesso: string;
+    resetPasswordToken: string;
 }
 
 class SalaService {
 
-    async createSala({ tituloSala, descricaoSala, cor, totalMembros, maximoDeMembros, tokkenAcesso, resetPasswordToken }) {
+    async createSala({ tituloSala, descricaoSala, cor, totalMembros, maximoDeMembros, tokkenAcesso, resetPasswordToken }: SalaProps) {
         let sala;
 
         if (!tituloSala || !descricaoSala || !cor || !totalMembros || !maximoDeMembros || !tokkenAcesso || !resetPasswordToken) {

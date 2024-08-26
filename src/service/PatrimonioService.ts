@@ -10,7 +10,7 @@ interface PatrimoniosProps {
     codigo?: number
     valorDaAquisicao?: number
     valorFinal?: number
-    valorAtual?: number
+    valorAtual: number
     situacao?: number
     localizacao?: string
     porcentagemDesvalorizacao?: number
@@ -18,7 +18,7 @@ interface PatrimoniosProps {
 
 class PatrimonioService {
 
-    async createPatrimonio({ tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao, porcentagemDesvalorizacao }) {
+    async createPatrimonio({ tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao, porcentagemDesvalorizacao }: PatrimoniosProps) {
         let patrimonio;
 
         if (!tituloPatrimonio || !descricaoPatrimonio || !codigo || !valorDaAquisicao || !valorFinal || !situacao || !localizacao || !porcentagemDesvalorizacao) {

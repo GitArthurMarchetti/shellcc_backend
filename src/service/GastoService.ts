@@ -14,7 +14,7 @@ interface GastosProps {
 
 class GastoService {
 
-    async createGasto({ titulo, descricao, preco, dataGasto, repeticao }) {
+    async createGasto({ titulo, descricao, preco, dataGasto, repeticao }: GastosProps) {
         let gasto;
 
         if (!titulo || !preco || !dataGasto || !repeticao) {

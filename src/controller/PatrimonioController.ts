@@ -1,12 +1,10 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import PatrimonioService from "../service/PatrimonioService";
-import bcrypt from 'bcrypt';
-import prismaClient from "../prisma";
 
 class PatrimonioController {
 
     async createPatrimonio(request: FastifyRequest, reply: FastifyReply) {
-        const patrimonioService = new PatrimonioService()
+        const patrimonioService = new PatrimonioService();
         const {
             tituloPatrimonio,
             descricaoPatrimonio,
@@ -16,21 +14,21 @@ class PatrimonioController {
             valorAtual,
             situacao,
             localizacao,
-            porcentagemDesvalorizacao } = request.body as
-            ({
-                tituloPatrimonio: string,
-                descricaoPatrimonio: string,
-                codigo: number,
-                valorDaAquisicao: number,
-                valorFinal: number,
-                valorAtual: number,
-                situacao: number,
-                localizacao: string,
-                porcentagemDesvalorizacao: number
-            })
+            porcentagemDesvalorizacao
+        } = request.body as ({
+            tituloPatrimonio: string;
+            descricaoPatrimonio?: string;
+            codigo: number;
+            valorDaAquisicao: number;
+            valorFinal: number;
+            valorAtual: number;
+            situacao: number;
+            localizacao: string;
+            porcentagemDesvalorizacao: number;
+        });
 
         try {
-            const { patrimonio } = await patrimonioService.createPatrimonio({
+            const patrimonio = await patrimonioService.createPatrimonio({
                 tituloPatrimonio,
                 descricaoPatrimonio,
                 codigo,
@@ -39,46 +37,59 @@ class PatrimonioController {
                 valorAtual,
                 situacao,
                 localizacao,
-                porcentagemDesvalorizacao,
-            })
-            reply.send({ patrimonio })
-        } catch {
-            reply.send({ error: "Ocorreu um erro ao criar o patrimônio" });
+                porcentagemDesvalorizacao
+            });
+            reply.status(201).send(patrimonio);
+        } catch (error) {
+            reply.status(500).send({ error: "Ocorreu um erro ao criar o patrimônio: " + (error as Error).message });
         }
     }
 
     async getPatrimonio(request: FastifyRequest, reply: FastifyReply) {
-        const patrimonioService = new PatrimonioService()
+        const patrimonioService = new PatrimonioService();
 
-        const patrimonio = await patrimonioService.getPatrimonio()
-
-        reply.send(patrimonio)
-
+        try {
+            const patrimonios = await patrimonioService.getPatrimonio();
+            reply.send(patrimonios);
+        } catch (error) {
+            reply.status(500).send({ error: "Ocorreu um erro ao buscar os patrimonios: " + (error as Error).message });
+        }
     }
 
     async updatePatrimonio(request: FastifyRequest, reply: FastifyReply) {
-        const patrimonioService = new PatrimonioService()
-        const { tituloPatrimonio,
+        const patrimonioService = new PatrimonioService();
+        const {
+            id,
+            tituloPatrimonio,
             descricaoPatrimonio,
             codigo,
             valorDaAquisicao,
             valorFinal,
             valorAtual,
             situacao,
-            localizacao
+            localizacao,
+            porcentagemDesvalorizacao
         } = request.body as ({
-            tituloPatrimonio: string,
-            descricaoPatrimonio: string,
-            codigo: number,
-            valorDaAquisicao: number,
-            valorFinal: number,
-            valorAtual: number,
-            situacao: number,
-            localizacao: string
-        })
+            id: string;
+            tituloPatrimonio: string;
+            descricaoPatrimonio?: string;
+            codigo: number;
+            valorDaAquisicao: number;
+            valorFinal: number;
+            valorAtual: number;
+            situacao: number;
+            localizacao: string;
+            porcentagemDesvalorizacao: number;
+        });
+
+        if (!id) {
+            reply.status(400).send({ error: "ID não fornecido" });
+            return;
+        }
 
         try {
             const patrimonio = await patrimonioService.updatePatrimonio({
+                id,
                 tituloPatrimonio,
                 descricaoPatrimonio,
                 codigo,
@@ -86,24 +97,31 @@ class PatrimonioController {
                 valorFinal,
                 valorAtual,
                 situacao,
-                localizacao
+                localizacao,
+                porcentagemDesvalorizacao
             });
-
-            reply.send({ patrimonio });
+            reply.send(patrimonio);
         } catch (error) {
-            reply.send({ error: "Ocorreu um erro ao atualizar os detalhes do patrimônio" });
+            reply.status(500).send({ error: "Ocorreu um erro ao atualizar o patrimônio: " + (error as Error).message });
         }
     }
 
     async deletePatrimonio(request: FastifyRequest, reply: FastifyReply) {
-        const patrimonioService = new PatrimonioService()
+        const patrimonioService = new PatrimonioService();
+        const { id } = request.body as { id: string };
 
-        const { id } = request.body as { id: string }
+        if (!id) {
+            reply.status(400).send({ error: "ID não fornecido" });
+            return;
+        }
 
-        const patrimonio = await patrimonioService.deletarPatrimonio(id)
-
-        reply.send(patrimonio)
+        try {
+            const resultado = await patrimonioService.deletarPatrimonio(id);
+            reply.send(resultado);
+        } catch (error) {
+            reply.status(500).send({ error: "Ocorreu um erro ao deletar o patrimônio: " + (error as Error).message });
+        }
     }
-
 }
+
 export default PatrimonioController;
