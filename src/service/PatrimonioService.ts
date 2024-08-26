@@ -12,7 +12,7 @@ interface PatrimoniosProps {
     valorFinal?: number
     valorAtual: number
     situacao?: number
-    localizacao?: string
+    localizacao: string
     porcentagemDesvalorizacao?: number
 }
 
@@ -21,7 +21,7 @@ class PatrimonioService {
     async createPatrimonio({ tituloPatrimonio, descricaoPatrimonio, codigo, valorDaAquisicao, valorFinal, valorAtual, situacao, localizacao, porcentagemDesvalorizacao }: PatrimoniosProps) {
         let patrimonio;
 
-        if (!tituloPatrimonio || !descricaoPatrimonio || !codigo || !valorDaAquisicao || !valorFinal || !situacao || !localizacao || !porcentagemDesvalorizacao) {
+        if (!tituloPatrimonio || !codigo || !valorDaAquisicao || !valorFinal || !situacao || !porcentagemDesvalorizacao ) {
             throw new Error("Preencha todos os campos")
         } else {
             try {

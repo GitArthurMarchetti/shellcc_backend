@@ -24,14 +24,19 @@ describe("Gasto Controller", () => {
         const gastoController = new GastoController();
 
         mockCreateGasto.mockResolvedValue({
-            gasto: { titulo: "Aluguel", descricao: "Mensalidade do apartamento", preco: 1500, dataGasto: new Date(), repeticao: true },
+            gasto: {
+                titulo: "Manutenção",
+                descricao: "Manutenção no monitor",
+                preco: 1500,
+                dataGasto: new Date(),
+                repeticao: true },
         });
 
         // Mock do REQUEST
         const request = {
             body: {
-                titulo: "Aluguel",
-                descricao: "Mensalidade do apartamento",
+                titulo: "Manutenção",
+                descricao: "Manutenção no monitor",
                 preco: 1500,
                 dataGasto: new Date(),
                 repeticao: true
@@ -48,8 +53,8 @@ describe("Gasto Controller", () => {
         expect(mockCreateGasto).toHaveBeenCalledTimes(1);
         expect(reply.send).toHaveBeenCalledWith({
             gasto: {
-                titulo: "Aluguel",
-                descricao: "Mensalidade do apartamento",
+                titulo: "Manutenção",
+                descricao: "Manutenção no monitor",
                 preco: 1500,
                 dataGasto: expect.any(Date),
                 repeticao: true
@@ -70,7 +75,7 @@ describe("Gasto Controller", () => {
         } as Partial<FastifyReply>;
 
         mockGetGasto.mockResolvedValue([
-            { titulo: "Aluguel", descricao: "Mensalidade do apartamento", preco: 1500, dataGasto: new Date(), repeticao: true },
+            { titulo: "Manutenção", descricao: "Manutenção no monitor", preco: 1500, dataGasto: new Date(), repeticao: true },
             { titulo: "Internet", descricao: "Mensalidade do provedor", preco: 100, dataGasto: new Date(), repeticao: true }
         ]);
 
@@ -78,7 +83,7 @@ describe("Gasto Controller", () => {
 
         expect(mockGetGasto).toHaveBeenCalledTimes(1);
         expect(reply.send).toHaveBeenCalledWith([
-            { titulo: "Aluguel", descricao: "Mensalidade do apartamento", preco: 1500, dataGasto: expect.any(Date), repeticao: true },
+            { titulo: "Manutenção", descricao: "Manutenção no monitor", preco: 1500, dataGasto: expect.any(Date), repeticao: true },
             { titulo: "Internet", descricao: "Mensalidade do provedor", preco: 100, dataGasto: expect.any(Date), repeticao: true }
         ]);
     });
@@ -90,8 +95,8 @@ describe("Gasto Controller", () => {
         // Mock do REQUEST
         const request = {
             body: {
-                titulo: "Aluguel",
-                descricao: "Mensalidade do apartamento",
+                titulo: "Manutenção",
+                descricao: "Manutenção no monitor",
                 preco: 1500,
                 dataGasto: new Date(),
                 repeticao: true
@@ -104,8 +109,8 @@ describe("Gasto Controller", () => {
         } as Partial<FastifyReply>;
 
         mockUpdateGasto.mockResolvedValue({
-            titulo: "Aluguel",
-            descricao: "Mensalidade do apartamento - Atualizado",
+            titulo: "Manutenção",
+            descricao: "Manutenção no monitor - Atualizado",
             preco: 1600,
             dataGasto: new Date(),
             repeticao: true
@@ -115,16 +120,16 @@ describe("Gasto Controller", () => {
 
         expect(mockUpdateGasto).toHaveBeenCalledTimes(1);
         expect(mockUpdateGasto).toHaveBeenCalledWith({
-            titulo: "Aluguel",
-            descricao: "Mensalidade do apartamento",
+            titulo: "Manutenção",
+            descricao: "Manutenção no monitor",
             preco: 1500,
             dataGasto: expect.any(Date),
             repeticao: true
         });
         expect(reply.send).toHaveBeenCalledWith({
             gasto: {
-                titulo: "Aluguel",
-                descricao: "Mensalidade do apartamento - Atualizado",
+                titulo: "Manutenção",
+                descricao: "Manutenção no monitor - Atualizado",
                 preco: 1600,
                 dataGasto: expect.any(Date),
                 repeticao: true
@@ -150,8 +155,8 @@ describe("Gasto Controller", () => {
 
         mockDeleteGasto.mockResolvedValue({
             id: "123",
-            titulo: "Aluguel",
-            descricao: "Mensalidade do apartamento",
+            titulo: "Manutenção",
+            descricao: "Manutenção no monitor",
             preco: 1500,
             dataGasto: new Date(),
             repeticao: true
@@ -164,8 +169,8 @@ describe("Gasto Controller", () => {
 
         expect(reply.send).toHaveBeenCalledWith({
             id: "123",
-            titulo: "Aluguel",
-            descricao: "Mensalidade do apartamento",
+            titulo: "Manutenção",
+            descricao: "Manutenção no monitor",
             preco: 1500,
             dataGasto: expect.any(Date),
             repeticao: true

@@ -39,9 +39,9 @@ class PatrimonioController {
                 localizacao,
                 porcentagemDesvalorizacao
             });
-            reply.status(201).send(patrimonio);
+            reply.code(200).send(patrimonio);
         } catch (error) {
-            reply.status(500).send({ error: "Ocorreu um erro ao criar o patrimônio: " + (error as Error).message });
+            reply.code(500).send({ error: "Ocorreu um erro ao criar o patrimônio: " + (error as Error).message });
         }
     }
 
@@ -52,7 +52,7 @@ class PatrimonioController {
             const patrimonios = await patrimonioService.getPatrimonio();
             reply.send(patrimonios);
         } catch (error) {
-            reply.status(500).send({ error: "Ocorreu um erro ao buscar os patrimonios: " + (error as Error).message });
+            reply.code(500).send({ error: "Ocorreu um erro ao buscar os patrimonios: " + (error as Error).message });
         }
     }
 
@@ -83,7 +83,7 @@ class PatrimonioController {
         });
 
         if (!id) {
-            reply.status(400).send({ error: "ID não fornecido" });
+            reply.code(400).send({ error: "ID não fornecido" });
             return;
         }
 
@@ -102,7 +102,7 @@ class PatrimonioController {
             });
             reply.send(patrimonio);
         } catch (error) {
-            reply.status(500).send({ error: "Ocorreu um erro ao atualizar o patrimônio: " + (error as Error).message });
+            reply.code(500).send({ error: "Ocorreu um erro ao atualizar o patrimônio: " + (error as Error).message });
         }
     }
 
@@ -119,7 +119,7 @@ class PatrimonioController {
             const resultado = await patrimonioService.deletarPatrimonio(id);
             reply.send(resultado);
         } catch (error) {
-            reply.status(500).send({ error: "Ocorreu um erro ao deletar o patrimônio: " + (error as Error).message });
+            reply.code(500).send({ error: "Ocorreu um erro ao deletar o patrimônio: " + (error as Error).message });
         }
     }
 }
