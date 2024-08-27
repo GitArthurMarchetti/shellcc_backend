@@ -215,7 +215,7 @@ describe("Sala Controller", () => {
 
         // Mock do REQUEST
         const request = {
-            body: { id: "123" } // Mudança de params para body, conforme a necessidade do controlador
+            body: { id: "1" } // Mudança de params para body, conforme a necessidade do controlador
         } as Partial<FastifyRequest>;
 
         // Mock do REPLY

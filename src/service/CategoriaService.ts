@@ -3,29 +3,29 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 
 interface CategoriaProps {
     id?: string;
-    tituloCategoria: string;
+    tipoCategoria: string;
     descricaoCategoria?: string;
-    TipoCategoria: string;
+    porcentagemDepreciacaoCategoria: string;
 }
 
 class CategoriaService {
 
-    async createCategoria({ tituloCategoria, descricaoCategoria, TipoCategoria }: CategoriaProps) {
-        if (!tituloCategoria || TipoCategoria === undefined) {
+    async createCategoria({ tipoCategoria, descricaoCategoria, porcentagemDepreciacaoCategoria }: CategoriaProps) {
+        if (tipoCategoria === undefined) {
             throw new Error("Título da categoria e desvalorização são obrigatórios!");
         }
 
         try {
             const categoria = await prismaClient.categoria.create({
                 data: {
-                    tituloCategoria,
+                    tipoCategoria,
                     descricaoCategoria,
-                    TipoCategoria
+                    porcentagemDepreciacaoCategoria
                 }
             });
             return { categoria };
         } catch (error) {
-            throw new Error("Erro ao criar categoria: " + error.message);
+            throw new Error("Erro ao criar categoria: ");
         }
     }
 
@@ -34,7 +34,7 @@ class CategoriaService {
             const categorias = await prismaClient.categoria.findMany();
             return categorias;
         } catch (error) {
-            throw new Error("Erro ao buscar categorias: " + error.message);
+            throw new Error("Erro ao buscar categorias: ");
         }
     }
 
@@ -74,9 +74,9 @@ class CategoriaService {
         return { message: 'Categoria deletada' };
     }
 
-    async updateCategoria({ id, tituloCategoria, descricaoCategoria, TipoCategoria }: CategoriaProps) {
-        if (!id || !tituloCategoria || TipoCategoria === undefined) {
-            throw new Error("ID, título da categoria e desvalorização são obrigatórios!");
+    async updateCategoria({ id, tipoCategoria, descricaoCategoria }: CategoriaProps) {
+        if (!id || !tipoCategoria === undefined) {
+            throw new Error("ID, tipo da categoria e desvalorização são obrigatórios!");
         }
 
         const categoria = await prismaClient.categoria.findUnique({
@@ -90,9 +90,8 @@ class CategoriaService {
         const updatedCategoria = await prismaClient.categoria.update({
             where: { id },
             data: {
-                tituloCategoria,
-                descricaoCategoria,
-                TipoCategoria
+                tipoCategoria,
+                descricaoCategoria
             }
         });
 

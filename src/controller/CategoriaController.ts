@@ -1,70 +1,78 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import bcrypt from 'bcrypt';
 import prismaClient from "../prisma";
-import GastoService from "../service/GastoService";
+import GastoService from "../service/CategoriaService";
+import CategoriaService from "../service/CategoriaService";
 
-class GastoController {
+class CategoriaController {
 
-    async createGasto(request: FastifyRequest, reply: FastifyReply) {
-        const gastoService = new GastoService()
+    async createCategoria(request: FastifyRequest, reply: FastifyReply) {
+        const categoriaService = new CategoriaService()
         const {
-            titulo,
-            descricao,
-            preco,
-            dataGasto,
-            repeticao } = request.body as ({
-                titulo: string,
-                descricao: string,
-                preco: number,
-                dataGasto: Date,
-                repeticao: boolean
+            tipoCategoria,
+            descricaoCategoria,
+            porcentagemDepreciacaoCategoria
+        } = request.body as ({
+                tipoCategoria: string,
+                descricaoCategoria: string,
+                porcentagemDepreciacaoCategoria: string,
             })
 
         try {
-            const { gasto } = await gastoService.createGasto({
-                titulo,
-                descricao,
-                preco,
-                dataGasto,
-                repeticao
+            const { categoria } = await categoriaService.createCategoria({
+            tipoCategoria,
+            descricaoCategoria,
+            porcentagemDepreciacaoCategoria
             })
-            reply.send({ gasto })
+            reply.send({ categoria })
         } catch {
-            reply.send({ error: "Ocorreu um erro ao criar o gasto" });
+            reply.send({ error: "Ocorreu um erro ao criar a categoria" });
         }
     }
 
-    async getGasto(request: FastifyRequest, reply: FastifyReply) {
-        const gastoService = new GastoService()
+    async getCategoria(request: FastifyRequest, reply: FastifyReply) {
+        const categoriaService = new CategoriaService()
 
-        const gastos = await gastoService.getGasto()
+        const categorias = await categoriaService.getCategorias()
 
-        reply.send(gastos)
+        reply.send(categorias)
 
     }
 
-    async updateGasto(request: FastifyRequest, reply: FastifyReply) {
-        const gastoService = new GastoService()
-        const { titulo, descricao, preco, dataGasto, repeticao } = request.body as ({ titulo: string, descricao: string, preco: number, dataGasto: Date, repeticao: boolean })
+    async updateCategoria(request: FastifyRequest, reply: FastifyReply) {
+        const categoriaService = new CategoriaService()
+        const {  
+            descricaoCategoria,
+            tipoCategoria,
+            porcentagemDepreciacaoCategoria
+         } = request.body as ({ 
+                tipoCategoria: string,
+                descricaoCategoria: string,
+                porcentagemDepreciacaoCategoria: string
+                })
 
         try {
-            const gasto = await gastoService.updateGasto({ titulo, descricao, preco, dataGasto, repeticao });
+            const categoria = await categoriaService.updateCategoria({
+                tipoCategoria,
+                descricaoCategoria,
+                porcentagemDepreciacaoCategoria
+          });
 
-            reply.send({ gasto });
+            reply.send({ categoria });
         } catch (error) {
-            reply.send({ error: "Ocorreu um erro ao atualizar os detalhes do gasto" });
+            reply.send({ error: "Ocorreu um erro ao atualizar os detalhes da categoria" });
         }
     }
 
-    async deleteGasto(request: FastifyRequest, reply: FastifyReply) {
-        const gastoService = new GastoService()
+    async deleteCategoria(request: FastifyRequest, reply: FastifyReply) {
+        const categoriaService = new CategoriaService()
 
         const { id } = request.body as { id: string }
 
-        const gasto = await gastoService.deletarGasto(id)
+        const categoria = await categoriaService.deleteCategoria(id)
 
-        reply.send(gasto)
+        reply.send(categoria)
     }
 
 }
-export default GastoController;
+export default CategoriaController;
