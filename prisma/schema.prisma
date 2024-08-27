@@ -45,10 +45,11 @@ model Sala {
 }
 
 model Categoria {
-  id                 String  @id @default(uuid())
+  id_categoria                 String  @id @default(uuid())
   tituloCategoria    String  @unique
   descricaoCategoria String?
   TipoCategoria     String
+  patrimonio       Patrimonio[] @relation("Patrimonio")
 
   @@map("categoria")
 }
@@ -64,6 +65,8 @@ model Patrimonio {
   situacao            Int
   localizacao         String
   porcentagemDesvalorizacao Int
+
+  categoria  Categoria  @relation("Categoria", fields: [id_categoria], references: [id_categoria])
 
   @@map("patrimonios")
 }
