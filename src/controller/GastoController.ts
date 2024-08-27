@@ -39,7 +39,7 @@ class GastoController {
         }
     }
 
-    async deleteUser(request: FastifyRequest, reply: FastifyReply) {
+    async deleteGasto(request: FastifyRequest, reply: FastifyReply) {
         const gastoService = new GastoService()
 
         const { id } = request.body as { id: string }
